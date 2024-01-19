@@ -13,6 +13,7 @@ const connection = mysql2.createConnection({
 const app = express();
 
 const PORT = 3000;
+
 app.listen(PORT, ()=> {
 	console.log(`SERVER : http://localhost:${PORT}`);
 	connection.connect((err)=>{
