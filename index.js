@@ -8,6 +8,7 @@ const stripe = require('stripe')('sk_test_51OgH0MIssiDZvurlanEFlRlWwT1QzJ2Z4wA1H
 const express = require("express");
 const mysql2 = require("mysql2");
 const cors = require("cors");
+const path = require('path');
 
 const router = express.Router();
 
@@ -31,13 +32,17 @@ const connection = mysql2.createConnection({
 	host: "localhost", //if RDS this will change using mysql on ec2 change password
 	database: "booking",
 	user: "root",
-	password: "Csouth22@", //ec2 password Csouth22@ or csouth22@
+	password: "", //ec2 password Csouth22@ or csouth22@
 })
 
 const app = express();
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(express.static("public"));
+
+app.use(express.static(path.join(__dirname,'/')));
+
+
 
 // app.get('/', (req, res) =>{
 	
@@ -56,6 +61,10 @@ app.listen(PORT, ()=> {
 		if(err) throw err;
 		console.log("DATABASE CONNECTED");
 	})
+})
+
+app.get('/', function(req, res){
+res.send(path.join(__dirname, '/public/index.html'));
 })
 
 app.get("/all/info", (req, res)=>{
