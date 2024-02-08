@@ -32,7 +32,7 @@ const connection = mysql2.createConnection({
 	host: "localhost", //if RDS this will change using mysql on ec2 change password
 	database: "booking",
 	user: "root",
-	password: "", //ec2 password Csouth22@ or csouth22@
+	password: "Csouth22@", //ec2 password Csouth22@ or csouth22@
 })
 
 const app = express();
