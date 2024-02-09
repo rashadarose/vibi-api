@@ -37,7 +37,7 @@ const corsOptions ={
 
 const connection = mysql2.createConnection({
 	host: "database-1.cn9cf1p4mmt6.us-east-2.rds.amazonaws.com", //if RDS this will change using mysql on ec2 change password
-	database: "booking_info",
+	database: "vibi_booking",
 	user: "admin",
 	password: "Csouth22!", //ec2 password Csouth22@ or csouth22@
 })
