@@ -32,7 +32,7 @@ const corsOptions ={
 // 	host: "localhost", //if RDS this will change using mysql on ec2 change password
 // 	database: "booking",
 // 	user: "root",
-// 	password: "", //ec2 password Csouth22@ or csouth22@
+// 	password: "Csouth22@", //ec2 password Csouth22@ or csouth22@
 // })
 
 const connection = mysql2.createConnection({
@@ -80,7 +80,7 @@ app.get("/all/info", (req, res)=>{
 	// res.setHeader("Access-Control-Allow-Credentials", "true");
 	// res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
 
-	const sql_query = `select * from info`
+	const sql_query = `select * from booking_info`
 	connection.query(sql_query, (err, result)=>{
 		if(err) throw err;
 		res.send(result);
