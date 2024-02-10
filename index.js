@@ -99,6 +99,18 @@ app.get("/all/info", (req, res)=>{
 	})
 })
 
+app.get("/all/info", (req, res)=>{
+    // res.setHeader("Access-Control-Allow-Origin", "'http://localhost:4200'")
+	// res.setHeader("Access-Control-Allow-Credentials", "true");
+	// res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+
+	const sql_query = `select * from booking_info`
+	connection.query(sql_query, (err, result)=>{
+		if(err) throw err;
+		res.send(result);
+	})
+})
+
 app.get("/all/info/:id", (req, res)=>{
 	var id = req.params.id;
 	const sql_query = `select * from info WHERE id = ${id} `
