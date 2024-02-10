@@ -44,7 +44,7 @@ const corsOptions ={
 // 	password: "Csouth22@", //ec2 password Csouth22@ 
 // })
 
-rds instance
+//rds instance
 const connection = mysql2.createConnection({
 	host: "database-1.cn9cf1p4mmt6.us-east-2.rds.amazonaws.com", //if RDS 
 	database: "vibi_booking",
