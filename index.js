@@ -28,18 +28,28 @@ const corsOptions ={
     optionSuccessStatus:200
 }
 
+//dev
 // const connection = mysql2.createConnection({
 // 	host: "localhost", //if RDS this will change using mysql on ec2 change password
 // 	database: "booking",
 // 	user: "root",
-// 	password: "Csouth22@", //ec2 password Csouth22@ or csouth22@
+// 	password: "", //ec2 password Csouth22@ 
 // })
 
+//linux mysql instance
+// const connection = mysql2.createConnection({
+// 	host: "localhost", //if RDS this will change using mysql on ec2 change password
+// 	database: "booking",
+// 	user: "root",
+// 	password: "Csouth22@", //ec2 password Csouth22@ 
+// })
+
+rds instance
 const connection = mysql2.createConnection({
-	host: "database-1.cn9cf1p4mmt6.us-east-2.rds.amazonaws.com", //if RDS this will change using mysql on ec2 change password
+	host: "database-1.cn9cf1p4mmt6.us-east-2.rds.amazonaws.com", //if RDS 
 	database: "vibi_booking",
-	user: "admin",
-	password: "Csouth22!", //ec2 password Csouth22@ or csouth22@
+	user: "admin",  //rds user name
+	password: "Csouth22!", //rds password
 })
 
 
@@ -71,16 +81,18 @@ app.listen(PORT, ()=> {
 	})
 })
 
-// app.get('/', function(req, res){
-// res.send(path.join(__dirname, '/public/index.html'));
-// })
+app.get('/all/yo', function(req, res){
+	 res.sendfile(__dirname + '/public/success.html');
+ //res.send(path.join(__dirname, '/public/success.html'));
+ //res.send('hi')
+})
 
 app.get("/all/info", (req, res)=>{
     // res.setHeader("Access-Control-Allow-Origin", "'http://localhost:4200'")
 	// res.setHeader("Access-Control-Allow-Credentials", "true");
 	// res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
 
-	const sql_query = `select * from booking_info`
+	const sql_query = `select * from info`
 	connection.query(sql_query, (err, result)=>{
 		if(err) throw err;
 		res.send(result);
