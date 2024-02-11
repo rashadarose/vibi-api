@@ -30,10 +30,10 @@ const corsOptions ={
 
 //dev
 // const connection = mysql2.createConnection({
-// 	host: "localhost", //if RDS this will change using mysql on ec2 change password
+// 	host: "localhost", 
 // 	database: "booking",
 // 	user: "root",
-// 	password: "", //ec2 password Csouth22@ 
+// 	password: "", 
 // })
 
 //linux mysql instance
@@ -124,7 +124,22 @@ app.get("/all/info/:id", (req, res)=>{
 
 app.post('/all/data', function(req, res){
     var username=req.body.name;
-    connection.query("INSERT INTO info (name) VALUES (?)", username.toString(), function(err, result){
+   	var age = req.body.age;
+   	const data = [username]
+   	 console.log(username)
+    connection.query("INSERT INTO info (name) VALUES (?)", data, function(err, result){
+        if(err) throw err;
+            console.log("1 record inserted");
+        });
+    res.send(username);
+})
+
+app.post('/all/datagram', function(req, res){
+    var username=req.body.name;
+   	var age = req.body.age;
+    const data = [username.toString(), age]
+   
+    connection.query("INSERT INTO info (name, age) VALUES (?,?)", data, function(err, result){
         if(err) throw err;
             console.log("1 record inserted");
         });
