@@ -82,7 +82,7 @@ app.listen(PORT, ()=> {
 })
 
 app.get('/all/yo', function(req, res){
-	 res.sendfile(__dirname + '/public/success.html');
+	 res.sendFile(__dirname + '/public/success.html');
  //res.send(path.join(__dirname, '/public/success.html'));
  //res.send('hi')
 })
@@ -137,11 +137,13 @@ app.post('/all/data', function(req, res){
 app.post('/all/datagram', function(req, res){
     var username=req.body.name;
    	var age = req.body.age;
-    const data = [username.toString(), age]
+   	var address = req.body.address;
+   	var phoneNumber = req.body.phoneNumber;
+    const data = [username, age, address, phoneNumber]
    
-    connection.query("INSERT INTO info (name, age) VALUES (?,?)", data, function(err, result){
+    connection.query("INSERT INTO info (name, age, address, phoneNumber) VALUES (?,?,?,?)", data, function(err, result){
         if(err) throw err;
-            console.log("1 record inserted");
+            console.log(data);
         });
     res.send(username);
 })
@@ -196,7 +198,7 @@ app.post('/all/checkout', async (req, res) => {
 app.post('/all/delete', function(req, res){
     var id = req.body.id;
     
-    connection.query(`DELETE FROM info WHERE id = ?`, [id], function(err, result){
+    connection.query(`DELETE FROM info WHERE id = ?`, id, function(err, result){
         if(err) throw err;
         console.log("1 record deleted" + id);
         res.send('record deleted');
